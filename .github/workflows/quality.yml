@@ -1,0 +1,38 @@
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  skills:
+    name: Skill metadata
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Validate SKILL.md frontmatter
+        run: bash tests/validate-skills.sh
+
+      # The frontmatter check above cannot catch YAML that parses as the wrong
+      # type (e.g. an unquoted `argument-hint: [FOO] [--bar]` becomes a flow
+      # sequence and the CLI skips the whole skill). Assert that the CLI itself
+      # discovers every skill directory.
+      - name: Verify the skills CLI discovers every skill
+        run: |
+          expected="$(find skills -mindepth 1 -maxdepth 1 -type d | wc -l)"
+          output="$(npx -y skills@latest add "$GITHUB_WORKSPACE" -l 2>&1)"
+          found="$(printf '%s' "$output" | grep -oE 'Found [0-9]+ skills' | grep -oE '[0-9]+' || echo 0)"
+          echo "expected=$expected found=$found"
+          if [ "$expected" != "$found" ]; then
+            printf '%s\n' "$output"
+            exit 1
+          fi
+
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ludeeus/action-shellcheck@master

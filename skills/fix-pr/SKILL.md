@@ -1,7 +1,7 @@
 ---
 name: fix-pr
 description: Use when the user wants to make a GitHub pull request mergeable, resolve PR review comments, failing checks, merge conflicts, or update a branch from main. Invoke as /fix-pr [PR_NUMBER] [--auto].
-argument-hint: [PR_NUMBER] [--auto]
+argument-hint: "[PR_NUMBER] [--auto]"
 ---
 
 # Fix PR
