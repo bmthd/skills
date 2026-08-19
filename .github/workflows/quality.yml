@@ -21,9 +21,9 @@ jobs:
       - name: Verify the skills CLI discovers every skill
         run: bash tests/validate-cli-discovery.sh
 
-      # SKILL.ja.md is a reading aid the CLI never loads, so nothing else would
-      # notice if a translation fell behind the SKILL.md it translates.
-      - name: Verify each SKILL.ja.md stays in step with its SKILL.md
+      # The `.ja.md` files are reading aids nothing else loads, so nothing else
+      # would notice if one fell behind the `.md` it translates.
+      - name: Verify each translation stays in step with its original
         run: bash tests/validate-translations.sh
 
   shellcheck:
