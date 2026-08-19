@@ -93,7 +93,8 @@ dead end still produced knowledge — what it established, what it tried, the
 evidence behind both, why it stopped short, what to try next — and that knowledge
 dies with the transcript unless you relay it. When the unit belongs to a GitHub
 Issue, `dispatch-issues` governs and the agent comments those findings on the
-issue in Japanese with `gh issue comment`; otherwise they go in the summary.
+issue with `gh issue comment`, in the issue's language; otherwise they go in
+the summary.
 
 ## Red Flags — STOP, you are about to violate the Iron Law
 

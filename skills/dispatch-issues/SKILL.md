@@ -129,7 +129,7 @@ After issue selection, switch into commander behavior:
 
 | Units | Mode | Why |
 |---|---|---|
-| 1–2, clearly disjoint files | Shared tree, file partitioning | No merge step, no `pnpm install` per unit. |
+| 1–2, clearly disjoint files | Shared tree, file partitioning | No merge step, no per-unit dependency install. |
 | **3+, or any file overlap** | **Worktree isolation** (`isolation: "worktree"`) | Agents work unconstrained; conflicts are resolved once, at the end. |
 
 Default to worktree isolation as soon as there are three or more units. File
@@ -159,10 +159,11 @@ user asked for that state change.
 `gh issue comment` has one standing exception. **When a unit ends without a
 PR-ready result — blocked, root cause not found, tests not green, a product
 decision needed — the agent must not finish silently.** It posts its findings to
-the issue with `gh issue comment <n>`, in Japanese, covering:
+the issue with `gh issue comment <n>`, in the language the issue is written in,
+covering:
 
-- what it established (分かったこと),
-- what it tried (試したこと),
+- what it established,
+- what it tried,
 - the evidence behind both (numbers, failing output, screenshots),
 - why the work did not reach a PR,
 - the options it recommends next.
@@ -187,7 +188,8 @@ issue is lost the moment the agent exits.
   no unrelated cleanups, the smallest change that closes the issue. Sprawl is
   what makes the merge unreadable, not the overlap itself.
 - **The fallback report.** If the unit will not reach a PR, the agent comments
-  its findings on the issue in Japanese rather than ending on a shrug.
+  its findings on the issue, in the issue's language, rather than ending on a
+  shrug.
 
 Use this dispatch prompt shape:
 
@@ -202,7 +204,7 @@ Shared files: <other units running now and the files they may also touch; overla
 is expected — keep the diff minimal, do not stall on it>
 Constraints: <commit policy for this mode; no pushes, PRs, labels, assignments,
 or closures; if the unit does not reach a PR-ready result, comment the findings
-on issue #N in Japanese with `gh issue comment`>
+on issue #N with `gh issue comment`, in the issue's language>
 Report format: files changed, commands run with results, risks, blockers,
 open questions, and verification evidence.
 ```
@@ -217,7 +219,7 @@ open questions, and verification evidence.
 | Decide actionability | Use concrete outcome, bounded scope, context, verification, and blockers. |
 | Dispatch work | Use `commander`; delegate hands-on work, keep verification read-only. |
 | Handle file overlap | Dispatch anyway under worktree isolation; resolve the conflict at merge time. |
-| Close out a dead end | `gh issue comment <n>` in Japanese: findings, attempts, evidence, why no PR, next options. |
+| Close out a dead end | `gh issue comment <n>` in the issue's language: findings, attempts, evidence, why no PR, next options. |
 
 ## Red Flags
 
