@@ -39,8 +39,8 @@ Example: `feature/add-button` -> `feature-add-button`
 {repo_root}/../{repo_name}.worktrees/{slug}
 ```
 
-Example: if the repository is at `/home/user/yamada-ui`
--> `/home/user/yamada-ui.worktrees/feature-add-button`
+Example: if the repository is at `/home/user/my-project`
+-> `/home/user/my-project.worktrees/feature-add-button`
 
 ### 5. Check branch existence and create the worktree
 
