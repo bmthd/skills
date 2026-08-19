@@ -33,8 +33,8 @@ basename "$(git rev-parse --show-toplevel)"
 {repo_root}/../{repo_name}.worktrees/{slug}
 ```
 
-例: リポジトリが `/home/user/yamada-ui` にある場合
--> `/home/user/yamada-ui.worktrees/feature-add-button`
+例: リポジトリが `/home/user/my-project` にある場合
+-> `/home/user/my-project.worktrees/feature-add-button`
 
 ### 5. ブランチの存在を確認して worktree を作成する
 
