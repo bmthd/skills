@@ -1,10 +1,9 @@
----
-name: worktree-ja
-description: 新しい git ブランチと worktree を ../{repo}.worktrees/{slug} に作成する。メインのチェックアウトを切り替えずに、新しいブランチで隔離された作業を始めたいときに使う。/worktree-ja <branch-name> で呼び出す。(worktree の日本語版)
-argument-hint: <branch-name>
----
-
 # Worktree
+
+> [`SKILL.md`](SKILL.md) の日本語訳。エージェントが読み込むのは英語版の `SKILL.md` で、
+> この訳は内容を理解するための参考用。
+>
+> **description**: 新しい git ブランチと worktree を ../{repo}.worktrees/{slug} に作成する。メインのチェックアウトを切り替えずに、新しいブランチで隔離された作業を始めたいときに使う。/worktree <branch-name> で呼び出す。
 
 指定されたブランチ名から、新しいブランチと worktree を作成する。
 

@@ -1,17 +1,16 @@
----
-name: dispatch-issues-ja
-description: gh で GitHub Issue を検索・トリアージし、着手可能な issue を選び、サブエージェントへの並列作業として準備したいときに使う。(dispatch-issues の日本語版)
-argument-hint: <issue search or dispatch instruction>
----
-
 # Dispatch Issues
+
+> [`SKILL.md`](SKILL.md) の日本語訳。エージェントが読み込むのは英語版の `SKILL.md` で、
+> この訳は内容を理解するための参考用。
+>
+> **description**: gh で GitHub Issue を検索・トリアージし、着手可能な issue を選び、サブエージェントへの並列作業として準備したいときに使う。
 
 `gh` で着手可能な GitHub Issue を見つけ、何に取り組むかをユーザーに選ばせ、
 その後は指揮官として独立した issue 作業をサブエージェントに並列で割り当てる。
 
 ## 必須サブスキル
 
-- **必須:** issue の作業対象が決まったら `commander-ja` (未インストールなら `commander`) を使う。
+- **必須:** issue の作業対象が決まったら `commander` を使う。
   指揮官は実装・テスト・コミット・push・issue の編集を自分では行わない。
 
 ## 手順
@@ -197,7 +196,7 @@ PR に到達する成果が出ない場合は、`gh issue comment` で issue #N 
 | 文脈を確認する | `gh issue view <n> --comments --json ...`。 |
 | ベースラインを確認する | `git status -sb`、`git log --oneline -1 origin/main`、挙げられた行を実際に解決する。 |
 | 着手可能性を判断する | 具体的な成果、限定された範囲、文脈、検証手段、ブロッカーで判断する。 |
-| 作業を割り当てる | `commander-ja` を使う。実作業は委譲し、検証は読み取り専用に留める。 |
+| 作業を割り当てる | `commander` を使う。実作業は委譲し、検証は読み取り専用に留める。 |
 | ファイルの重複を扱う | worktree 隔離のうえで構わず割り当て、コンフリクトはマージ時に解消する。 |
 | 行き詰まりを締める | `gh issue comment <n>` に日本語で: 分かったこと、試したこと、根拠、なぜ PR に至らなかったか、次の選択肢。 |
 
