@@ -53,6 +53,11 @@ Dispatch independent units in parallel in a single message. Use `SendMessage` to
 continue an existing agent with its context intact instead of re-spawning for
 follow-ups on the same unit.
 
+Maintain a unit table for the whole run: unit → assignee → status
+(`not-started` / `in-progress` / `committed` / `PR-opened`). After any agent
+failure, diff the unit set the user selected against the unit set currently
+assigned before redispatching; no selected unit may disappear silently.
+
 Pick an isolation mode before writing prompts. With three or more units, or any
 overlap in the files they touch, default to `isolation: "worktree"` — each agent
 gets its own checkout and can run formatters, builds, and tests at full speed
@@ -61,8 +66,13 @@ overlapping work run in parallel, not a way to avoid the overlap: the units stil
 land on the same files and you still merge them at the end. Under worktree
 isolation, require each agent to **commit to its own worktree branch**
 (uncommitted work in a worktree cannot be integrated) while still forbidding
-pushes and PRs. Machine-global resources — dev-server ports especially — still
-collide across worktrees, so assign them per agent.
+implementing agents from pushing or opening PRs. When independent units map 1:1
+to issues, default to one verified PR per unit; keep the work local-commit-only
+when the user wants one combined diff instead. Machine-global resources —
+dev-server ports especially — still collide across worktrees, so assign them per
+agent. Ban `git clean` in every prompt: worktrees often live inside the
+repository as untracked directories, so a cleanup sweep deletes other agents'
+checkouts.
 
 ### 3. Review each report
 
@@ -75,6 +85,17 @@ If a report reveals a gap or a bug, dispatch a fix — to the same agent via
 `SendMessage` when its context helps, or a fresh one with the failure details
 included. Never patch it yourself.
 
+Do not narrow an already-started agent mid-flight to take units out of its scope;
+it may continue on them anyway. Treat started units as owned by that agent, and
+reassign only units still marked `not-started`. If duplicate implementations do
+happen, pick the diff to adopt and put the other agent to work reviewing it
+before discarding its work.
+
+When an agent dies, inspect before redispatching: `git worktree list`, then
+`git status --porcelain` inside its worktree if that still exists. Worktrees with
+uncommitted changes usually survive the agent, so hand the salvageable partial
+work to the successor.
+
 ### 5. Integrate and report
 
 Integration is yours to *direct*, not to perform. Merging worktree branches,
@@ -84,9 +105,14 @@ integration agent with the branch list, the merge order you chose, how to settle
 the conflicts you expect, and the verification it must produce. Then check its
 report read-only, the same as any other.
 
-When all units pass review, summarize for the user: what was done, by which
-agents, what you verified, and anything left open. Subagent output is not shown
-to the user — relay what matters.
+Default to streaming delivery: as soon as one unit is committed, dispatch a
+verification agent to re-run the tests and type checks, then push and open that
+unit's PR. Later implementation work and earlier verification run in parallel;
+wait for the whole batch only when the user explicitly wants one combined diff.
+
+Report incrementally as PRs open, then summarize the whole run once every unit
+passes review: what was done, by which agents, what you verified, and anything
+left open. Subagent output is not shown to the user — relay what matters.
 
 Units that reached no deliverable belong in that summary, not omitted from it. A
 dead end still produced knowledge — what it established, what it tried, the
@@ -120,6 +146,9 @@ the summary.
   holds only while no two units share a file. Once they do, the answer is
   worktree isolation, never deferring a unit. Past two units it is usually the
   cheaper mode anyway, even counting the merge.
+- **Local commits are not deliverables**: under worktree isolation, decide and
+  say whether the handoff is one PR per unit or one combined diff. For
+  independent issue units, prefer a verified PR as each unit finishes.
 - **Verify the ground before dispatching**: a detached HEAD, a branch diverged
   from `main`, or a task written against code that is not in this checkout will
   waste every agent at once. Read `git status -sb` and `git log --oneline -1`,
@@ -130,3 +159,8 @@ the summary.
 - **Verification is your job**: subagents overstate success. "Tests pass" in a
   report means nothing until you have seen the evidence (paste of test output,
   or your own read-only check).
+- **Failures scramble ownership**: after a dead agent, reconcile the unit table,
+  inspect the surviving worktrees for partial work, and hand off the salvage
+  explicitly.
+- **Never `git clean` in a dispatch**: cleanup instructions have to preserve the
+  other agents' worktrees, which may sit untracked inside this repository.
