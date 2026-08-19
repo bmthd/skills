@@ -129,7 +129,7 @@ After issue selection, switch into commander behavior:
 
 | Units | Mode | Why |
 |---|---|---|
-| 1–2, clearly disjoint files | Shared tree, file partitioning | No merge step, no `pnpm install` per unit. |
+| 1–2, clearly disjoint files | Shared tree, file partitioning | No merge step, no per-unit dependency install. |
 | **3+, or any file overlap** | **Worktree isolation** (`isolation: "worktree"`) | Agents work unconstrained; conflicts are resolved once, at the end. |
 
 Default to worktree isolation as soon as there are three or more units. File
