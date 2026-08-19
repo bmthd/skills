@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-# Keep the Japanese skill variants in step with their English originals.
+# Keep each SKILL.ja.md in step with the SKILL.md it translates.
 #
-# Each skill `foo` has a translation at `skills/foo-ja/SKILL.md`, installable on
-# its own so a user can pick the language at install time. Two copies drift the
-# moment someone edits one of them, so assert the pairing exists in both
-# directions and that the two files still share a structure: same headings, same
-# number of fenced code blocks.
+# The Japanese file is a reading aid: the skills CLI only ever loads SKILL.md,
+# so nothing else would notice if a translation fell behind. Assert that every
+# skill has one and that the two files still share a structure — same heading
+# shape, same number of fenced code blocks.
 set -uo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -23,40 +22,44 @@ fence_count() {
 
 for skill_md in "$repo_root"/skills/*/SKILL.md; do
     dir="$(basename "$(dirname "$skill_md")")"
-    case "$dir" in
-        *-ja) continue ;;
-    esac
+    ja_md="$(dirname "$skill_md")/SKILL.ja.md"
 
-    ja_md="$repo_root/skills/$dir-ja/SKILL.md"
     if [ ! -f "$ja_md" ]; then
-        echo "✗ $dir: no Japanese variant at skills/$dir-ja/SKILL.md"
+        echo "✗ $dir: no translation at skills/$dir/SKILL.ja.md"
+        status=1
+        continue
+    fi
+
+    # A frontmatter block would make the translation look like a second skill
+    # manifest. It is prose about SKILL.md, nothing more.
+    if [ "$(head -n 1 "$ja_md")" = "---" ]; then
+        echo "✗ $dir: SKILL.ja.md starts with frontmatter; it is not a skill of its own"
         status=1
         continue
     fi
 
     if ! diff -q <(heading_shape "$skill_md") <(heading_shape "$ja_md") > /dev/null; then
-        echo "✗ $dir: heading structure differs from $dir-ja"
+        echo "✗ $dir: heading structure differs between SKILL.md and SKILL.ja.md"
         diff <(heading_shape "$skill_md") <(heading_shape "$ja_md") | head -20
         status=1
         continue
     fi
 
     if [ "$(fence_count "$skill_md")" != "$(fence_count "$ja_md")" ]; then
-        echo "✗ $dir: code block count differs from $dir-ja" \
+        echo "✗ $dir: code block count differs" \
              "($(fence_count "$skill_md") vs $(fence_count "$ja_md"))"
         status=1
         continue
     fi
 
-    echo "✓ $dir ↔ $dir-ja"
+    echo "✓ $dir"
 done
 
 # The other direction: a translation whose original was renamed or removed.
-for ja_dir in "$repo_root"/skills/*-ja/; do
-    ja_name="$(basename "$ja_dir")"
-    base="${ja_name%-ja}"
-    if [ ! -f "$repo_root/skills/$base/SKILL.md" ]; then
-        echo "✗ $ja_name: no original at skills/$base/SKILL.md"
+for ja_md in "$repo_root"/skills/*/SKILL.ja.md; do
+    dir="$(basename "$(dirname "$ja_md")")"
+    if [ ! -f "$(dirname "$ja_md")/SKILL.md" ]; then
+        echo "✗ $dir: SKILL.ja.md has no SKILL.md to translate"
         status=1
     fi
 done

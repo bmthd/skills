@@ -1,10 +1,9 @@
----
-name: update-repo-ja
-description: 任意の GitHub リポジトリを変更して PR を出したいときに使う。対象リポジトリをチェックアウトしていない端末からでも動く。未取得なら ghq で clone し、最新のデフォルトブランチから分岐し、書き込み権限がなければ自動で fork して PR を作る。/update-repo-ja <owner/repo> <change> で呼び出す。(update-repo の日本語版)
-argument-hint: <owner/repo> <change to make>
----
-
 # Update Repo
+
+> [`SKILL.md`](SKILL.md) の日本語訳。エージェントが読み込むのは英語版の `SKILL.md` で、
+> この訳は内容を理解するための参考用。
+>
+> **description**: 任意の GitHub リポジトリを変更して PR を出したいときに使う。対象リポジトリをチェックアウトしていない端末からでも動く。未取得なら ghq で clone し、最新のデフォルトブランチから分岐し、書き込み権限がなければ自動で fork して PR を作る。/update-repo <owner/repo> <change> で呼び出す。
 
 任意の端末から、任意の GitHub リポジトリに変更を加えてプルリクエストを出す。
 常に ghq 管理下のクローンで作業するため、どこで実行しても挙動が同じで、
