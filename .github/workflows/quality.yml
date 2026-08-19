@@ -21,6 +21,11 @@ jobs:
       - name: Verify the skills CLI discovers every skill
         run: bash tests/validate-cli-discovery.sh
 
+      # Every skill ships an English original and a `-ja` translation. They are
+      # separate files, so they drift as soon as one side is edited alone.
+      - name: Verify each skill and its Japanese variant stay in step
+        run: bash tests/validate-translations.sh
+
   shellcheck:
     name: ShellCheck
     runs-on: ubuntu-latest
