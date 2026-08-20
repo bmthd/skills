@@ -1,3 +1,9 @@
+---
+name: worktree
+description: ../{repo}.worktrees/{slug} に新しい git ブランチと worktree を作る。メインのチェックアウトを切り替えずに、新しいブランチで隔離された作業を始めたいときに使う。/worktree <ブランチ名> として呼び出す。
+argument-hint: <ブランチ名>
+---
+
 # Worktree
 
 指定されたブランチ名から、新しいブランチと worktree を作成する。

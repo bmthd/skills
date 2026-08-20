@@ -1,3 +1,9 @@
+---
+name: merge-queue
+description: 複数の PR 番号を渡され、無人でマージしてほしいときに使う。GitHub の Merge Queue をローカルで再現し、マージを妨げるもの (承認、古くなったブランチ、コンフリクト、単純な CI 失敗) を自律的に解消するので、その場を離れてよい。最初に前提を確認し、自動マージできるものが 1 つもなければ中止する。/merge-queue <PR 番号...> として呼び出す。
+argument-hint: <PR 番号...>
+---
+
 # Merge Queue
 
 複数のプルリクエストを受け取ってキューに並べ、GitHub の Merge Queue と同じやり方で
