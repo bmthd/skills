@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 # Validate that every skill in skills/ carries the frontmatter the skills CLI
 # needs: a `name` matching its directory and a non-empty `description`.
+#
+# Skills are grouped into purpose directories (skills/<group>/<skill>/), so walk
+# the tree rather than globbing a fixed depth: a glob that matches nothing makes
+# this script exit 0 having checked nothing.
 set -euo pipefail
 
 status=0
+found=0
 
-for skill_md in skills/*/SKILL.md; do
+while IFS= read -r skill_md; do
+    found=$((found + 1))
     dir="$(basename "$(dirname "$skill_md")")"
 
     if [ "$(head -n 1 "$skill_md")" != "---" ]; then
@@ -34,6 +40,11 @@ for skill_md in skills/*/SKILL.md; do
     fi
 
     [ "$status" -eq 0 ] && echo "✓ $dir"
-done
+done < <(find skills -name SKILL.md | sort)
+
+if [ "$found" -eq 0 ]; then
+    echo "✗ no SKILL.md found under skills/"
+    status=1
+fi
 
 exit "$status"
