@@ -20,14 +20,16 @@ npx skills add bmthd/skills -s worktree -s fix-pr
 
 ## Skills
 
+スキルは用途別に `skills/dev/` 以下へ配置しています。
+
 | Skill | 日本語訳 | 用途 |
 | --- | --- | --- |
-| [`commander`](skills/commander/SKILL.md) | [日本語](skills/commander/SKILL.ja.md) | メインセッションを指揮に徹させ、実作業をすべてサブエージェントに委譲する |
-| [`dispatch-issues`](skills/dispatch-issues/SKILL.md) | [日本語](skills/dispatch-issues/SKILL.ja.md) | GitHub Issue を検索・トリアージし、並列作業用に振り分ける |
-| [`fix-pr`](skills/fix-pr/SKILL.md) | [日本語](skills/fix-pr/SKILL.ja.md) | レビュー指摘・CI 失敗・コンフリクトを解消し、PR をマージ可能にする |
-| [`merge-queue`](skills/merge-queue/SKILL.md) | [日本語](skills/merge-queue/SKILL.ja.md) | 複数の PR を GitHub Merge Queue 相当の手順で順にマージする |
-| [`update-repo`](skills/update-repo/SKILL.md) | [日本語](skills/update-repo/SKILL.ja.md) | 任意の GitHub リポジトリを、チェックアウトしていない端末からでも変更して PR を出す |
-| [`worktree`](skills/worktree/SKILL.md) | [日本語](skills/worktree/SKILL.ja.md) | 新しいブランチと git worktree を作り、隔離された作業場所を用意する |
+| [`commander`](skills/dev/commander/SKILL.md) | [日本語](skills/dev/commander/SKILL.ja.md) | メインセッションを指揮に徹させ、実作業をすべてサブエージェントに委譲する |
+| [`dispatch-issues`](skills/dev/dispatch-issues/SKILL.md) | [日本語](skills/dev/dispatch-issues/SKILL.ja.md) | GitHub Issue を検索・トリアージし、並列作業用に振り分ける |
+| [`fix-pr`](skills/dev/fix-pr/SKILL.md) | [日本語](skills/dev/fix-pr/SKILL.ja.md) | レビュー指摘・CI 失敗・コンフリクトを解消し、PR をマージ可能にする |
+| [`merge-queue`](skills/dev/merge-queue/SKILL.md) | [日本語](skills/dev/merge-queue/SKILL.ja.md) | 複数の PR を GitHub Merge Queue 相当の手順で順にマージする |
+| [`update-repo`](skills/dev/update-repo/SKILL.md) | [日本語](skills/dev/update-repo/SKILL.ja.md) | 任意の GitHub リポジトリを、チェックアウトしていない端末からでも変更して PR を出す |
+| [`worktree`](skills/dev/worktree/SKILL.md) | [日本語](skills/dev/worktree/SKILL.ja.md) | 新しいブランチと git worktree を作り、隔離された作業場所を用意する |
 
 各スキルには日本語訳 `SKILL.ja.md` が併置されています。エージェントが読み込むのは
 英語版の `SKILL.md` だけで、日本語訳は内容を把握するための参考用です。
