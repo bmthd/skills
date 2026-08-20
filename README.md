@@ -20,14 +20,16 @@ Update them with `npx skills update`.
 
 ## Skills
 
+Skills live under `skills/dev/`, grouped by purpose.
+
 | Skill | 日本語訳 | Purpose |
 | --- | --- | --- |
-| [`commander`](skills/commander/SKILL.md) | [日本語](skills/commander/SKILL.ja.md) | Keep the main session on command duty and delegate every piece of hands-on work to subagents |
-| [`dispatch-issues`](skills/dispatch-issues/SKILL.md) | [日本語](skills/dispatch-issues/SKILL.ja.md) | Search and triage GitHub Issues, then hand them out as parallel work |
-| [`fix-pr`](skills/fix-pr/SKILL.md) | [日本語](skills/fix-pr/SKILL.ja.md) | Resolve review comments, failing checks, and conflicts to make a PR mergeable |
-| [`merge-queue`](skills/merge-queue/SKILL.md) | [日本語](skills/merge-queue/SKILL.ja.md) | Merge several PRs one at a time, the way GitHub's Merge Queue would |
-| [`update-repo`](skills/update-repo/SKILL.md) | [日本語](skills/update-repo/SKILL.ja.md) | Change any GitHub repository and open a PR, even from a terminal where it is not checked out |
-| [`worktree`](skills/worktree/SKILL.md) | [日本語](skills/worktree/SKILL.ja.md) | Create a new branch and git worktree as an isolated place to work |
+| [`commander`](skills/dev/commander/SKILL.md) | [日本語](skills/dev/commander/SKILL.ja.md) | Keep the main session on command duty and delegate every piece of hands-on work to subagents |
+| [`dispatch-issues`](skills/dev/dispatch-issues/SKILL.md) | [日本語](skills/dev/dispatch-issues/SKILL.ja.md) | Search and triage GitHub Issues, then hand them out as parallel work |
+| [`fix-pr`](skills/dev/fix-pr/SKILL.md) | [日本語](skills/dev/fix-pr/SKILL.ja.md) | Resolve review comments, failing checks, and conflicts to make a PR mergeable |
+| [`merge-queue`](skills/dev/merge-queue/SKILL.md) | [日本語](skills/dev/merge-queue/SKILL.ja.md) | Merge several PRs one at a time, the way GitHub's Merge Queue would |
+| [`update-repo`](skills/dev/update-repo/SKILL.md) | [日本語](skills/dev/update-repo/SKILL.ja.md) | Change any GitHub repository and open a PR, even from a terminal where it is not checked out |
+| [`worktree`](skills/dev/worktree/SKILL.md) | [日本語](skills/dev/worktree/SKILL.ja.md) | Create a new branch and git worktree as an isolated place to work |
 
 Every skill ships a Japanese translation next to it as `SKILL.ja.md`. Agents only
 load the English `SKILL.md`; the translation is there to help you read it.
