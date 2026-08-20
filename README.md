@@ -20,7 +20,9 @@ Update them with `npx skills update`.
 
 ## Skills
 
-Skills live under `skills/dev/`, grouped by purpose.
+Skills are grouped by who needs them: `dev/` is for software work, `utility/` is for everyday tasks that have nothing to do with code — `utility/mac/` being the macOS ones.
+
+### Development
 
 | Skill | 日本語訳 | Purpose |
 | --- | --- | --- |
@@ -30,6 +32,12 @@ Skills live under `skills/dev/`, grouped by purpose.
 | [`merge-queue`](skills/dev/merge-queue/SKILL.md) | [日本語](skills/dev/merge-queue/SKILL.ja.md) | Merge several PRs one at a time, the way GitHub's Merge Queue would |
 | [`update-repo`](skills/dev/update-repo/SKILL.md) | [日本語](skills/dev/update-repo/SKILL.ja.md) | Change any GitHub repository and open a PR, even from a terminal where it is not checked out |
 | [`worktree`](skills/dev/worktree/SKILL.md) | [日本語](skills/dev/worktree/SKILL.ja.md) | Create a new branch and git worktree as an isolated place to work |
+
+### Mac utilities
+
+| Skill | 日本語訳 | Purpose |
+| --- | --- | --- |
+| [`import-youtube-music`](skills/utility/mac/import-youtube-music/SKILL.md) | [日本語](skills/utility/mac/import-youtube-music/SKILL.ja.md) | Download a track from YouTube and add it to the macOS Music.app library, tagged and with cover art |
 
 Every skill ships a Japanese translation next to it as `SKILL.ja.md`. Agents only
 load the English `SKILL.md`; the translation is there to help you read it.
