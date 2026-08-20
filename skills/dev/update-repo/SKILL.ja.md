@@ -1,3 +1,9 @@
+---
+name: update-repo
+description: 任意の端末から GitHub リポジトリを変更して PR を出したいときに使う。そのリポジトリをチェックアウトしていない端末でも動く。クローンがなければ ghq で取得し、最新のデフォルトブランチから分岐し、書き込み権限がなければ自動でフォークして PR を出す。/update-repo <owner/repo> <変更内容> として呼び出す。
+argument-hint: <owner/repo> <変更内容>
+---
+
 # Update Repo
 
 任意の端末から、任意の GitHub リポジトリに変更を加えてプルリクエストを出す。

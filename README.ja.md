@@ -39,8 +39,9 @@ npx skills add bmthd/skills -s worktree -s fix-pr
 | --- | --- | --- |
 | [`import-youtube-music`](skills/utility/mac/import-youtube-music/SKILL.md) | [日本語](skills/utility/mac/import-youtube-music/SKILL.ja.md) | YouTube の楽曲をダウンロードし、タグとカバーアートを付けて macOS の Music.app ライブラリに取り込む |
 
-各スキルには日本語訳 `SKILL.ja.md` が併置されています。エージェントが読み込むのは
-英語版の `SKILL.md` だけで、日本語訳は内容を把握するための参考用です。
+各スキルには日本語訳 `SKILL.ja.md` が併置されています。frontmatter も訳してあるので、
+エージェントがスキルを読み込む前に提示する `description` まで日本語で読めます。
+エージェントが実際に読み込むのは英語版の `SKILL.md` だけで、日本語訳は内容を把握するための参考用です。
 
 ## License
 

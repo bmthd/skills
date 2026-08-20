@@ -39,8 +39,10 @@ Skills are grouped by who needs them: `dev/` is for software work, `utility/` is
 | --- | --- | --- |
 | [`import-youtube-music`](skills/utility/mac/import-youtube-music/SKILL.md) | [日本語](skills/utility/mac/import-youtube-music/SKILL.ja.md) | Download a track from YouTube and add it to the macOS Music.app library, tagged and with cover art |
 
-Every skill ships a Japanese translation next to it as `SKILL.ja.md`. Agents only
-load the English `SKILL.md`; the translation is there to help you read it.
+Every skill ships a Japanese translation next to it as `SKILL.ja.md`, frontmatter
+included — the `description` an agent shows before it loads a skill is translated
+too. Agents still load the English `SKILL.md`; the translation is there to help you
+read it.
 
 ## License
 

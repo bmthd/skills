@@ -1,3 +1,8 @@
+---
+name: import-youtube-music
+description: YouTube の楽曲をダウンロードし、タグとカバーアートを付けて macOS の Music.app / iTunes ライブラリに取り込みたいときに使う。すでにライブラリにあるトラックの再生時間が 0:00 になっている、ビットレートが空になっている、iCloud の同期状態が「不適格」になっている場合にも使う。
+---
+
 # Import YouTube Music
 
 yt-dlp で音声をダウンロードし、まともな MP4 コンテナに詰め直し、タグと正方形のカバーを書き込んでから、Music.app に渡す。
