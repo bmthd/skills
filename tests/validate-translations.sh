@@ -59,9 +59,9 @@ check_pair() {
 
 check_pair "$repo_root/README.md"
 
-for skill_md in "$repo_root"/skills/*/SKILL.md; do
+while IFS= read -r skill_md; do
     check_pair "$skill_md"
-done
+done < <(find "$repo_root"/skills -name SKILL.md | sort)
 
 # The other direction: a translation whose original was renamed or removed.
 while IFS= read -r translation; do

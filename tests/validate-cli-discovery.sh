@@ -22,15 +22,17 @@ if printf '%s\n' "$output" | grep -qiE 'skipped|parse error'; then
     status=1
 fi
 
-for skill_dir in "$repo_root"/skills/*/; do
-    name="$(basename "$skill_dir")"
+# Skills live one level deeper than the group directory, so ask for the
+# directories that actually hold a SKILL.md instead of globbing a fixed depth.
+while IFS= read -r skill_md; do
+    name="$(basename "$(dirname "$skill_md")")"
     if printf '%s\n' "$output" | grep -q "$name"; then
         echo "✓ $name discovered"
     else
         echo "✗ $name not discovered by the CLI"
         status=1
     fi
-done
+done < <(find "$repo_root"/skills -name SKILL.md | sort)
 
 if [ "$status" -ne 0 ]; then
     echo "--- CLI output ---"
