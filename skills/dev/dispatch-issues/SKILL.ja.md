@@ -1,3 +1,9 @@
+---
+name: dispatch-issues
+description: gh で GitHub Issue を検索・トリアージしたいとき、着手可能な issue を選びたいとき、サブエージェント向けに issue の並列作業を用意したいときに使う。
+argument-hint: <issue の検索条件または割り当て指示>
+---
+
 # Dispatch Issues
 
 `gh` で着手可能な GitHub Issue を見つけ、何に取り組むかをユーザーに選ばせ、

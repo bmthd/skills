@@ -4,8 +4,8 @@
 # The Japanese files are reading aids: the skills CLI only ever loads SKILL.md,
 # and GitHub only ever renders README.md, so nothing else would notice if a
 # translation fell behind. Assert that every original has one and that the pair
-# still shares a structure — same heading shape, same number of fenced code
-# blocks.
+# still shares a structure — mirrored frontmatter, same heading shape, same
+# number of fenced code blocks.
 set -uo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -21,6 +21,23 @@ fence_count() {
     grep -c '^```' "$1"
 }
 
+has_frontmatter() {
+    [ "$(head -n 1 "$1")" = "---" ]
+}
+
+# The frontmatter fields, in order. Enough to catch a translation that dropped
+# `argument-hint` or invented a field the original does not carry.
+frontmatter_keys() {
+    awk 'NR > 1 { if ($0 == "---") exit; print }' "$1" |
+        sed -nE 's/^([A-Za-z0-9_-]+):.*/\1/p'
+}
+
+frontmatter_value() {
+    awk 'NR > 1 { if ($0 == "---") exit; print }' "$1" |
+        sed -n "s/^$2:[[:space:]]*//p" |
+        sed -e 's/^"//' -e 's/"$//'
+}
+
 check_pair() {
     local original="$1"
     local translation="${original%.md}.ja.md"
@@ -32,10 +49,46 @@ check_pair() {
         return
     fi
 
-    # A frontmatter block would make a translation look like a second skill
-    # manifest. It is prose about the original, nothing more.
-    if [ "$(head -n 1 "$translation")" = "---" ]; then
-        echo "✗ $label: its translation starts with frontmatter; it is not a skill of its own"
+    # The description in the frontmatter is what an agent shows before it loads
+    # a skill, so a translation that stops at the body leaves the most visible
+    # sentence in English. Mirror the original instead: same fields, the same
+    # `name` (an identifier, not prose), and a description actually rewritten.
+    if has_frontmatter "$original"; then
+        if ! has_frontmatter "$translation"; then
+            echo "✗ $label: its translation has no frontmatter"
+            status=1
+            return
+        fi
+
+        if ! diff -q <(frontmatter_keys "$original") <(frontmatter_keys "$translation") > /dev/null; then
+            echo "✗ $label: frontmatter fields differ from its translation"
+            diff <(frontmatter_keys "$original") <(frontmatter_keys "$translation") | head -20
+            status=1
+            return
+        fi
+
+        if [ "$(frontmatter_value "$original" name)" != "$(frontmatter_value "$translation" name)" ]; then
+            echo "✗ $label: its translation changes 'name'; that field is an identifier, not prose"
+            status=1
+            return
+        fi
+
+        local translated_description
+        translated_description="$(frontmatter_value "$translation" description)"
+
+        if [ -z "$translated_description" ]; then
+            echo "✗ $label: its translation has no 'description'"
+            status=1
+            return
+        fi
+
+        if [ "$translated_description" = "$(frontmatter_value "$original" description)" ]; then
+            echo "✗ $label: its translation copies 'description' from the original verbatim"
+            status=1
+            return
+        fi
+    elif has_frontmatter "$translation"; then
+        echo "✗ $label: its translation has frontmatter the original does not"
         status=1
         return
     fi
