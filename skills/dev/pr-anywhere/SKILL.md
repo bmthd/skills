@@ -1,10 +1,10 @@
 ---
-name: update-repo
-description: Use when the user wants to change a GitHub repository and open a PR from ANY terminal, even one where that repo is not checked out. Clones via ghq if absent, branches off the fresh default branch, forks automatically when there is no write access, and opens a PR. Invoke as /update-repo <owner/repo> <change>.
+name: pr-anywhere
+description: Use when the user wants to change a GitHub repository and open a PR from ANY terminal, even one where that repo is not checked out. Clones via ghq if absent, branches off the fresh default branch, forks automatically when there is no write access, and opens a PR. Invoke as /pr-anywhere <owner/repo> <change>.
 argument-hint: <owner/repo> <change to make>
 ---
 
-# Update Repo
+# PR Anywhere
 
 Make a change to any GitHub repository and open a pull request, from any terminal.
 Always works in the ghq-managed clone so behaviour is identical everywhere and never

@@ -30,7 +30,7 @@ Skills are grouped by who needs them: `dev/` is for software work, `utility/` is
 | [`dispatch-issues`](skills/dev/dispatch-issues/SKILL.md) | [日本語](skills/dev/dispatch-issues/SKILL.ja.md) | Search and triage GitHub Issues, then hand them out as parallel work |
 | [`fix-pr`](skills/dev/fix-pr/SKILL.md) | [日本語](skills/dev/fix-pr/SKILL.ja.md) | Resolve review comments, failing checks, and conflicts to make a PR mergeable |
 | [`merge-queue`](skills/dev/merge-queue/SKILL.md) | [日本語](skills/dev/merge-queue/SKILL.ja.md) | Merge several PRs one at a time, the way GitHub's Merge Queue would |
-| [`update-repo`](skills/dev/update-repo/SKILL.md) | [日本語](skills/dev/update-repo/SKILL.ja.md) | Change any GitHub repository and open a PR, even from a terminal where it is not checked out |
+| [`pr-anywhere`](skills/dev/pr-anywhere/SKILL.md) | [日本語](skills/dev/pr-anywhere/SKILL.ja.md) | Change any GitHub repository and open a PR, even from a terminal where it is not checked out |
 | [`worktree`](skills/dev/worktree/SKILL.md) | [日本語](skills/dev/worktree/SKILL.ja.md) | Create a new branch and git worktree as an isolated place to work |
 
 ### Mac utilities
