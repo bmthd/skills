@@ -18,8 +18,6 @@ Launch the app locally without colliding with other worktrees, and open it in a 
 - **"PR it"**: open the PR, hand it to a delegate to watch and merge, and return to the next remark.
 - **The same problem across the codebase**: fix the case in front of you and offer the rest as a sweep.
 
-Save each correction the user makes about how to work as a durable preference.
-
 ## Delegate
 
 Give every delegate its own worktree, a condition to stop and report, and the user's language for the report. Relay their reports to the user, with the decisions they need as options.
