@@ -2,7 +2,7 @@
 
 Slow or wide work runs in the background so the pairing loop never waits on it. Every delegate gets the same three things in its brief: **an isolated checkout** (its own git worktree from the fresh default branch; the user's checkout and dev server are off-limits), **a stop condition** (when to stop and report instead of acting), and **a report shape** (what it hands back, in the user's language).
 
-Relay each report in a few lines, with the decisions it needs as `AskUserQuestion` options. Delegates that hold context (the one that found a root cause, the one running a merge queue) are continued with `SendMessage` rather than replaced.
+Relay each report in a few lines, with the decisions it needs as multiple-choice options. Delegates that hold context (the one that found a root cause, the one running a merge queue) are continued by messaging them, not replaced by a fresh one.
 
 ## Watch and merge a PR
 
@@ -22,16 +22,21 @@ A background subagent reproduces the failure, finds the root cause with evidence
 
 ## Sweep the codebase
 
-A repo-wide mechanical change goes to a coding agent in its own Orca worktree:
+A repo-wide mechanical change goes to a separate coding agent working in its own worktree, in a new pane of the terminal multiplexer, so the user can glance at it.
 
-```text
-orca worktree create --repo id:<repoId> --name <task> --no-parent --agent codex --prompt "<brief>" --json
-```
+The brief states:
 
-The brief states the pattern, what is in and out of scope, which tests to leave alone, the known failures it may ignore, and "show me the plan first; once approved, carry on through opening the PR without merging". Then:
+- the pattern to replace
+- what is in scope and what is out
+- which tests to leave alone
+- the known failures it may ignore
+- "show me the plan first; once approved, carry on through opening the PR without merging"
 
-1. Wait for the plan with `orca terminal wait --terminal <handle> --for tui-idle --timeout-ms <ms>` and read it with `orca terminal read`.
-2. Check the plan against the brief. Approve it with `orca terminal send --text "<approval>" --enter`, or correct it.
-3. Set the worktree comment so the user can see the state on the Orca card, then leave it to run on its own.
+Then:
+
+1. Create the worktree from the fresh default branch, start the agent in a pane there, and send it the brief.
+2. Wait until the agent goes idle, then read its pane for the plan.
+3. Check the plan against the brief, and send the approval or the correction to the pane.
+4. Label the pane or worktree with its state so the user can see it, then leave it to run on its own.
 
 The sweep's PR joins the merge queue like any other.
