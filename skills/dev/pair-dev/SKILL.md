@@ -14,7 +14,7 @@ Launch the app locally without colliding with other worktrees, and open it in a 
 ## Each remark
 
 - **"Make it an Issue"**: file it with the current and intended behaviour.
-- **A fix**: one topic per branch, cut from the fresh default branch. Ask the user only about design choices that are theirs to make, then fix it following the repository's own conventions, and report the result.
+- **"Fix this"**: one topic per branch, cut from the fresh default branch. Ask the user only about design choices that are theirs to make, then fix it following the repository's own conventions, and report the result.
 - **"PR it"**: open the PR, hand it to a delegate to watch and merge, and return to the next remark.
 - **The same problem across the codebase**: fix the case in front of you and offer the rest as a sweep.
 
