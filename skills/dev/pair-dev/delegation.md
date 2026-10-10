@@ -1,6 +1,6 @@
 # Delegation
 
-Slow or wide work runs in the background so the pairing loop never waits on it. Every delegate gets the same three things in its brief: **an isolated checkout** (its own git worktree from the fresh default branch; the user's checkout and dev server are off-limits), **a stop condition** (when to stop and report instead of acting), and **a report shape** (what it hands back, in the user's language).
+Slow or wide work runs in the background so the pairing loop never waits on it. Every delegate gets the same three things in its brief: **an isolated checkout** (its own git worktree from the fresh default branch; the user's checkout and running app are off-limits), **a stop condition** (when to stop and report instead of acting), and **a report shape** (what it hands back, in the user's language).
 
 Relay each report in a few lines, with the decisions it needs as multiple-choice options. Delegates that hold context (the one that found a root cause, the one running a merge queue) are continued by messaging them, not replaced by a fresh one.
 
@@ -9,7 +9,7 @@ Relay each report in a few lines, with the decisions it needs as multiple-choice
 A background subagent:
 
 1. Waits for checks (`gh pr checks <n> --watch`).
-2. After the preview job, confirms every review-notes link answers 200 (following redirects).
+2. When the repository builds a preview of each PR, waits for it and confirms the places the PR says to look at actually open.
 3. Squash-merges without deleting the branch, since the user's checkout may have it checked out.
 
 Stop and report when a check fails for a reason that is not plainly the PR's own simple mistake, or when merging needs to bypass branch protection (`--admin` is the user's call, never the delegate's).
