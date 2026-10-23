@@ -15,6 +15,7 @@ Launch the app locally without colliding with other worktrees, and open it in a 
 
 - **"Make it an Issue"**: file it with the current and intended behaviour.
 - **"Fix this"**: one topic per branch, cut from the fresh default branch. Ask the user only about design choices that are theirs to make, then fix it following the repository's own conventions, and report the result.
+- **A choice with more than one fair answer**: before changing code, lay the options side by side on a page the user can open (an artifact), at real size and on every screen the change reaches, with your recommendation. Build the one they pick.
 - **"PR it"**: open the PR, hand it to a delegate to watch CI and Preview and report the results, and return to the next remark.
 - **The same problem across the codebase**: fix the case in front of you and offer the rest as a sweep.
 
