@@ -73,8 +73,8 @@ gh auth status          # must be authenticated
 gh repo view --json nameWithOwner,defaultBranchRef -q '.nameWithOwner, .defaultBranchRef.name'
 ```
 
-Work in a **clean checkout of this repo** (no uncommitted changes — `git status` clean).
-If the working tree is dirty, STOP and tell the user; you must not stash their work.
+Leave existing local changes untouched. If resolving a blocker requires local branch work,
+use a separate clean checkout.
 
 ### 2. Assess every PR (the gate)
 
@@ -211,8 +211,6 @@ drains (or stalls entirely on deferrals), post a final render plus the specifics
 
 ## Gotchas
 
-- **Dirty working tree**: this skill pushes commits and switches branches. Refuse to run
-  if `git status` isn't clean — you must never stash or clobber the user's local work.
 - **Self-approval is impossible**: GitHub rejects approving your own PR. In a solo repo the
   approval blocker is unresolvable autonomously — surface it rather than looping.
 - **`mergeStateStatus` lags**: after any push/update it goes `UNKNOWN` while GitHub
