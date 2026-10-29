@@ -68,8 +68,8 @@ gh auth status          # 認証済みであること
 gh repo view --json nameWithOwner,defaultBranchRef -q '.nameWithOwner, .defaultBranchRef.name'
 ```
 
-**このリポジトリのクリーンなチェックアウト** で作業する (未コミット変更なし — `git status` がクリーン)。
-作業ツリーが汚れている場合は停止してユーザーに伝える。ユーザーの作業を stash してはならない。
+既存のローカル変更には触れない。ブロッカーの解消にローカルでのブランチ操作が必要なら、
+別のクリーンなチェックアウトで作業する。
 
 ### 2. 全 PR を評価する (ゲート)
 
@@ -199,8 +199,6 @@ git switch <baseRefName> && git pull --ff-only   # 次の PR のためにロー�
 
 ## 落とし穴
 
-- **汚れた作業ツリー**: このスキルはコミットを push し、ブランチを切り替える。`git status` が
-  クリーンでなければ実行を拒否する — ユーザーのローカル作業を stash したり壊したりしてはならない。
 - **自己承認は不可能**: GitHub は自分の PR の承認を拒否する。単独リポジトリでは承認ブロッカーを
   自律的に解消できない。ループせずに表面化させる。
 - **`mergeStateStatus` は遅れる**: push/更新の直後は GitHub が再計算する間 `UNKNOWN` になる。
