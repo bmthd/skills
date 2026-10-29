@@ -122,6 +122,12 @@ the user. When a background command finishes you're re-invoked with its result �
 it into the board then. Do **not** foreground-`sleep` to wait; a background poll loop is
 the pattern (e.g. `until gh pr checks <n> | grep -qv pending; do sleep 20; done`).
 
+**Green checks are not the end of a wait.** When one finishes, re-read the PR's
+`mergeStateStatus` before anything else. The base may have moved while CI ran; if the
+repo requires branches to be up to date, the PR is now `BEHIND` and will never turn
+`CLEAN` on its own. Update it right away (§4.1) and start a new wait — never just keep
+waiting on a `BEHIND` PR.
+
 For the current PR, resolve blockers **one at a time**, re-checking state after each fix
 (a fix often changes `mergeStateStatus`). Update the board's Verdict after each transition.
 Loop until CLEAN or deferred.
@@ -211,6 +217,9 @@ drains (or stalls entirely on deferrals), post a final render plus the specifics
   approval blocker is unresolvable autonomously — surface it rather than looping.
 - **`mergeStateStatus` lags**: after any push/update it goes `UNKNOWN` while GitHub
   recomputes. Poll a few times (short sleeps) before deciding it's blocked.
+- **The base moves while you wait**: another merge can land on the base during a CI run.
+  With strict required checks the PR then sits `BEHIND` forever, however long you wait.
+  Check for `BEHIND` every time a wait ends, and update the branch immediately.
 - **`UNSTABLE` can still be mergeable**: it means a *non-required* check is red. If required
   checks are green and policy allows, it may merge as-is — don't "fix" a check that isn't
   actually gating.
