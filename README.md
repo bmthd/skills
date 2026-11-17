@@ -29,8 +29,8 @@ Skills are grouped by who needs them: `dev/` is for software work, `utility/` is
 | [`commander`](skills/dev/commander/SKILL.md) | [日本語](skills/dev/commander/SKILL.ja.md) | Keep the main session on command duty and delegate every piece of hands-on work to subagents |
 | [`dispatch-issues`](skills/dev/dispatch-issues/SKILL.md) | [日本語](skills/dev/dispatch-issues/SKILL.ja.md) | Search and triage GitHub Issues, then hand them out as parallel work |
 | [`fix-pr`](skills/dev/fix-pr/SKILL.md) | [日本語](skills/dev/fix-pr/SKILL.ja.md) | Resolve review comments, failing checks, and conflicts to make a PR mergeable |
+| [`fork-to-worktree`](skills/dev/fork-to-worktree/SKILL.md) | [日本語](skills/dev/fork-to-worktree/SKILL.ja.md) | Move this conversation to a new worktree and resume it there with its whole context |
 | [`merge-queue`](skills/dev/merge-queue/SKILL.md) | [日本語](skills/dev/merge-queue/SKILL.ja.md) | Merge several PRs one at a time, the way GitHub's Merge Queue would |
-| [`move-to-worktree`](skills/dev/move-to-worktree/SKILL.md) | [日本語](skills/dev/move-to-worktree/SKILL.ja.md) | Move this conversation to a new worktree and resume it there with its whole context |
 | [`pair-dev`](skills/dev/pair-dev/SKILL.md) | [日本語](skills/dev/pair-dev/SKILL.ja.md) | Pair on a running app: fix what the user points out in a shared view while CI, merges, investigations, and sweeps run in the background |
 | [`pr-anywhere`](skills/dev/pr-anywhere/SKILL.md) | [日本語](skills/dev/pr-anywhere/SKILL.ja.md) | Change any GitHub repository and open a PR, even from a terminal where it is not checked out |
 | [`worktree`](skills/dev/worktree/SKILL.md) | [日本語](skills/dev/worktree/SKILL.ja.md) | Create a new branch and git worktree as an isolated place to work |

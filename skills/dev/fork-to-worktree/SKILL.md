@@ -1,12 +1,12 @@
 ---
-name: move-to-worktree
-description: Use when the user wants this conversation moved to a new worktree and resumed there with its whole context, not summarised for another agent. Invoke as /move-to-worktree [what to do next].
+name: fork-to-worktree
+description: Use when the user wants this conversation moved to a new worktree and resumed there with its whole context. Invoke as /fork-to-worktree [what to do next].
 argument-hint: "[what to do next]"
 ---
 
-# Move to Worktree
+# Fork to Worktree
 
-Move this very conversation into a new worktree: the same session, resumed there with everything said so far. Nothing is summarised; the user carries on talking to the same context in its new place, and this copy stops.
+Move this very conversation into a new worktree: the same session, resumed there with everything said so far. The user carries on talking to the same context in its new place, and this copy stops.
 
 ## Steps
 

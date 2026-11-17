@@ -1,12 +1,12 @@
 ---
-name: move-to-worktree
-description: この会話を新しい worktree に移し、別のエージェントへの要約ではなく、文脈をすべて持ったまま resume して続けたいときに使う。/move-to-worktree [次にやること] として呼び出す。
+name: fork-to-worktree
+description: この会話を新しい worktree に移し、文脈をすべて持ったまま resume して続けたいときに使う。/fork-to-worktree [次にやること] として呼び出す。
 argument-hint: "[次にやること]"
 ---
 
-# Move to Worktree
+# Fork to Worktree
 
-この会話そのものを新しい worktree に移す。同じセッションを、これまでのやりとりをすべて持ったまま、そこで resume する。何も要約しない。ユーザーは移った先で同じ文脈と話し続け、こちらの会話は止まる。
+この会話そのものを新しい worktree に移す。同じセッションを、これまでのやりとりをすべて持ったまま、そこで resume する。ユーザーは移った先で同じ文脈と話し続け、こちらの会話は止まる。
 
 ## 手順
 

@@ -29,8 +29,8 @@ npx skills add bmthd/skills -s worktree -s fix-pr
 | [`commander`](skills/dev/commander/SKILL.md) | [日本語](skills/dev/commander/SKILL.ja.md) | メインセッションを指揮に徹させ、実作業をすべてサブエージェントに委譲する |
 | [`dispatch-issues`](skills/dev/dispatch-issues/SKILL.md) | [日本語](skills/dev/dispatch-issues/SKILL.ja.md) | GitHub Issue を検索・トリアージし、並列作業用に振り分ける |
 | [`fix-pr`](skills/dev/fix-pr/SKILL.md) | [日本語](skills/dev/fix-pr/SKILL.ja.md) | レビュー指摘・CI 失敗・コンフリクトを解消し、PR をマージ可能にする |
+| [`fork-to-worktree`](skills/dev/fork-to-worktree/SKILL.md) | [日本語](skills/dev/fork-to-worktree/SKILL.ja.md) | この会話を新しい worktree に移し、文脈をすべて持ったまま resume して続ける |
 | [`merge-queue`](skills/dev/merge-queue/SKILL.md) | [日本語](skills/dev/merge-queue/SKILL.ja.md) | 複数の PR を GitHub Merge Queue 相当の手順で順にマージする |
-| [`move-to-worktree`](skills/dev/move-to-worktree/SKILL.md) | [日本語](skills/dev/move-to-worktree/SKILL.ja.md) | この会話を新しい worktree に移し、文脈をすべて持ったまま resume して続ける |
 | [`pair-dev`](skills/dev/pair-dev/SKILL.md) | [日本語](skills/dev/pair-dev/SKILL.ja.md) | 動いているアプリを 共有の画面で一緒に見て指摘を直し、CI・マージ・調査・横展開は裏で進める |
 | [`pr-anywhere`](skills/dev/pr-anywhere/SKILL.md) | [日本語](skills/dev/pr-anywhere/SKILL.ja.md) | 任意の GitHub リポジトリを、チェックアウトしていない端末からでも変更して PR を出す |
 | [`worktree`](skills/dev/worktree/SKILL.md) | [日本語](skills/dev/worktree/SKILL.ja.md) | 新しいブランチと git worktree を作り、隔離された作業場所を用意する |
